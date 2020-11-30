@@ -35,6 +35,12 @@ struct ConversationMessage
     std::map<std::string, std::string> data_;
 };
 
+struct CallTextMessage
+{
+    std::string call_id_;
+    std::map<std::string, std::string> data_;
+};
+
 using ConvMsgPtr = std::shared_ptr<ConversationMessage>;
 
 using strMapSubjectPtr = std::shared_ptr<PublishObservable<ConvMsgPtr>>;

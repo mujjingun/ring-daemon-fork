@@ -3061,6 +3061,12 @@ Manager::sendTextMessage(const std::string& accountID,
             JAMI_ERR("Exception during text message sending: %s", e.what());
         }
     }
+    else {
+        JAMI_ERR() << "No such account: " << accountID;
+        for (auto& acc : getAccountList()) {
+            JAMI_ERR() << acc;
+        }
+    }
     return 0;
 }
 

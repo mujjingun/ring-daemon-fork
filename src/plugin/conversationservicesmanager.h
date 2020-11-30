@@ -43,6 +43,15 @@ public:
         };
 
         pm.registerService("sendTextMessage", sendTextMessage);
+        
+        auto sendCallTextMessage = [this](const DLPlugin* plugin, void* data) {
+            auto cm = static_cast<CallTextMessage*>(data);
+            jami::Manager::instance().sendCallTextMessage(cm->call_id_, cm->data_, "", false);
+            return 0;
+        };
+        
+        pm.registerService("sendCallTextMessage", sendCallTextMessage);
+
     }
     NON_COPYABLE(ConversationServicesManager);
 

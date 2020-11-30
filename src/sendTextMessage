@@ -1,0 +1,220 @@
+smartools.cpp:        auto confID = call->getConfId();
+client/callmanager.cpp:        current_call->carryingDTMFdigits(code);
+client/videomanager.cpp:        if (call->hasVideo()) {
+client/videomanager.cpp:            call->switchInput(resource);
+client/configurationmanager.cpp:                    if (call->getVideoCodec() == foundCodec) {
+client/configurationmanager.cpp:                        call->restartMediaSender();
+conference.cpp:                        uri = call->getPeerNumber();
+conference.cpp:                    uri = call->getPeerNumber();
+conference.cpp:            call->getVideoRtp().exitConference();
+conference.cpp:            call->sendTextMessage(std::map<std::string, std::string> {{"application/confInfo+json",
+conference.cpp:                                  call->getAccount().getFromUri());
+conference.cpp:                if (not call->isRecording()) {
+conference.cpp:                             call->getCallId().c_str());
+conference.cpp:                    call->toggleRecording();
+conference.cpp:            if (call->isPeerRecording())
+conference.cpp:                call->setRemoteRecording(true);
+conference.cpp:            call->getVideoRtp().enterConference(this);
+conference.cpp:            if (call->isRecording()) {
+conference.cpp:                JAMI_DBG("Stop recording for call %s", call->getCallId().c_str());
+conference.cpp:                call->toggleRecording();
+conference.cpp:                || call->getPeerNumber().find(participant_id) != std::string::npos) {
+conference.cpp:                videoMixer_->setActiveParticipant(call->getVideoRtp().getVideoReceive().get());
+conference.cpp:            call->sendTextMessage(std::map<std::string, std::string> {{"application/confInfo+json",
+conference.cpp:                                  call->getAccount().getFromUri());
+conference.cpp:            call->getVideoRtp().exitConference();
+conference.cpp:            if (call->isPeerRecording())
+conference.cpp:                call->setRemoteRecording(false);
+conference.cpp:            call->updateRecState(newState);
+conference.cpp:        auto uri = call->getPeerNumber();
+jamidht/jamiaccount.cpp:                    call->setPeerUri(RING_URI_PREFIX + from);
+jamidht/jamiaccount.cpp:                    call->setPeerNumber(from);
+jamidht/jamiaccount.cpp:                    call->updateDetails(details);
+jamidht/jamiaccount.cpp:        } else if (call->getPeerNumber() == from
+jamidht/jamiaccount.cpp:            call->updateDetails(details);
+jamidht/jamiaccount.cpp:    call->setIPToIP(true);
+jamidht/jamiaccount.cpp:    call->setSecure(isTlsEnabled());
+jamidht/jamiaccount.cpp:                                             call->onFailure(EINVAL);
+jamidht/jamiaccount.cpp:                                                 call->onFailure(ENOENT);
+jamidht/jamiaccount.cpp:                                             call->onFailure();
+jamidht/jamiaccount.cpp:        call->onFailure(ENOENT);
+jamidht/jamiaccount.cpp:        call->onFailure(ENETDOWN);
+jamidht/jamiaccount.cpp:    call->setPeerNumber(toUri + "@ring.dht");
+jamidht/jamiaccount.cpp:    call->setPeerUri(RING_URI_PREFIX + toUri);
+jamidht/jamiaccount.cpp:    call->setState(Call::ConnectionState::TRYING);
+jamidht/jamiaccount.cpp:                                               call->setPeerRegistredName(result);
+jamidht/jamiaccount.cpp:                                               call->setPeerUri(RING_URI_PREFIX + result);
+jamidht/jamiaccount.cpp:        auto state = call->getConnectionState();
+jamidht/jamiaccount.cpp:            *this, Manager::instance().getNewCallID(), Call::CallType::OUTGOING, call->getDetails());
+jamidht/jamiaccount.cpp:        dev_call->setIPToIP(true);
+jamidht/jamiaccount.cpp:        dev_call->setSecure(isTlsEnabled());
+jamidht/jamiaccount.cpp:        dev_call->setState(Call::ConnectionState::TRYING);
+jamidht/jamiaccount.cpp:        call->addSubCall(*dev_call);
+jamidht/jamiaccount.cpp:                  call->getCallId().c_str());
+jamidht/jamiaccount.cpp:                                                                       call->getDetails());
+jamidht/jamiaccount.cpp:    call->addSubCall(*dummyCall);
+jamidht/jamiaccount.cpp:                  call->getCallId().c_str());
+jamidht/jamiaccount.cpp:                                                                          call->getDetails());
+jamidht/jamiaccount.cpp:        dev_call->setIPToIP(true);
+jamidht/jamiaccount.cpp:        dev_call->setSecure(isTlsEnabled());
+jamidht/jamiaccount.cpp:        dev_call->setTransport(transport);
+jamidht/jamiaccount.cpp:        call->addSubCall(*dev_call);
+jamidht/jamiaccount.cpp:        dev_call->setState(Call::ConnectionState::PROGRESSING);
+jamidht/jamiaccount.cpp:        call->addStateListener(
+jamidht/jamiaccount.cpp:                    JAMI_WARN("[call:%s] no devices found", call->getCallId().c_str());
+jamidht/jamiaccount.cpp:                    call->onFailure(static_cast<int>(std::errc::no_such_device_or_address));
+jamidht/jamiaccount.cpp:    JAMI_DBG("[call:%s] outgoing call connected to %s", call->getCallId().c_str(), to_id.c_str());
+jamidht/jamiaccount.cpp:        auto& sdp = call->getSDP();
+jamidht/jamiaccount.cpp:                                                 shared->videoEnabled_ and not call->isAudioOnly()
+jamidht/jamiaccount.cpp:    call->setIPToIP(true);
+jamidht/jamiaccount.cpp:    call->setPeerNumber(to_id);
+jamidht/jamiaccount.cpp:    call->initIceMediaTransport(true, std::move(opts));
+jamidht/jamiaccount.cpp:       call->inv->pool));
+jamidht/jamiaccount.cpp:    if (not call || call->getState() == Call::CallState::OVER)
+jamidht/jamiaccount.cpp:        JAMI_WARN("[call:%s] Timeout on ICE negotiation", call->getCallId().c_str());
+jamidht/jamiaccount.cpp:        call->onFailure();
+jamidht/jamiaccount.cpp:        JAMI_INFO("[call:%s] UDP negotiation is ready", call->getCallId().c_str());
+jamidht/jamiaccount.cpp:        JAMI_INFO("[call:%s] TCP negotiation is ready", call->getCallId().c_str());
+jamidht/jamiaccount.cpp:        JAMI_ERR("[call:%s] Both ICE negotations failed", call->getCallId().c_str());
+jamidht/jamiaccount.cpp:        call->onFailure();
+jamidht/jamiaccount.cpp:                                            call->getCallId().c_str());
+jamidht/jamiaccount.cpp:    call->setTransport(transport);
+jamidht/jamiaccount.cpp:    call->setState(Call::ConnectionState::PROGRESSING);
+jamidht/jamiaccount.cpp:    auto callId = call->getCallId();
+jamidht/jamiaccount.cpp:    auto ice = createIceTransport(("sip:" + call->getCallId()).c_str(),
+jamidht/jamiaccount.cpp:    auto ice_tcp = createIceTransport(("sip:" + call->getCallId()).c_str(),
+jamidht/jamiaccount.cpp:            JAMI_ERR("[call:%s] ice init failed", call->getCallId().c_str());
+jamidht/jamiaccount.cpp:            call->onFailure(EIO);
+jamidht/jamiaccount.cpp:    call->setPeerUri(RING_URI_PREFIX + from);
+jamidht/jamiaccount.cpp:                                               call->setPeerRegistredName(result);
+jamidht/jamiaccount.cpp:                                               call->setPeerUri(RING_URI_PREFIX + result);
+jamidht/jamiaccount.cpp:                                   call->onFailure();
+jamidht/jamiaccount.cpp:        call->onFailure(EIO);
+jamidht/jamiaccount.cpp:    call->setPeerNumber(from);
+jamidht/jamiaccount.cpp:    pendingCallsDht_.emplace(call->getCallId(),
+jamidht/jamiaccount.cpp:        [w = weak(), callId = call->getCallId()]() {
+sip/sipvoiplink.cpp:    call->setTransport(transport);
+sip/sipvoiplink.cpp:    call->setPeerNumber(peerNumber);
+sip/sipvoiplink.cpp:    call->setPeerUri(account->getToUri(peerNumber));
+sip/sipvoiplink.cpp:    call->setPeerDisplayName(peerDisplayName);
+sip/sipvoiplink.cpp:    call->setState(Call::ConnectionState::PROGRESSING);
+sip/sipvoiplink.cpp:    call->getSDP().setPublishedIP(addrSdp);
+sip/sipvoiplink.cpp:        call->updateSDPFromSTUN();
+sip/sipvoiplink.cpp:    call->getSDP().receiveOffer(r_sdp,
+sip/sipvoiplink.cpp:    call->setRemoteSdp(r_sdp);
+sip/sipvoiplink.cpp:                         call->getSDP().getLocalSdpSession(),
+sip/sipvoiplink.cpp:    call->inv.reset(inv);
+sip/sipvoiplink.cpp:    if (pjsip_inv_initial_answer(call->inv.get(), rdata, PJSIP_SC_TRYING, NULL, NULL, &tdata)
+sip/sipvoiplink.cpp:    if (pjsip_inv_send_msg(call->inv.get(), tdata) != PJ_SUCCESS) {
+sip/sipvoiplink.cpp:    call->setState(Call::ConnectionState::TRYING);
+sip/sipvoiplink.cpp:    if (pjsip_inv_answer(call->inv.get(), PJSIP_SC_RINGING, NULL, NULL, &tdata) != PJ_SUCCESS) {
+sip/sipvoiplink.cpp:    if (pjsip_inv_send_msg(call->inv.get(), tdata) != PJ_SUCCESS) {
+sip/sipvoiplink.cpp:    call->setState(Call::ConnectionState::RINGING);
+sip/sipvoiplink.cpp:                  call->getCallId().c_str(),
+sip/sipvoiplink.cpp:                 call->getCallId().c_str(),
+sip/sipvoiplink.cpp:                 call->getCallId().c_str(),
+sip/sipvoiplink.cpp:            call->onPeerRinging();
+sip/sipvoiplink.cpp:        call->onAnswered();
+sip/sipvoiplink.cpp:            call->onBusyHere();
+sip/sipvoiplink.cpp:            call->onClosed();
+sip/sipvoiplink.cpp:            call->onClosed();
+sip/sipvoiplink.cpp:            call->onFailure(inv->cause);
+sip/sipvoiplink.cpp:        call->inv.reset();
+sip/sipvoiplink.cpp:        call->onReceiveOffer(offer);
+sip/sipvoiplink.cpp:    const auto& account = call->getSIPAccount();
+sip/sipvoiplink.cpp:    auto& localSDP = call->getSDP();
+sip/sipvoiplink.cpp:    JAMI_DBG("[call:%s] INVITE@%p media update: status %d", call->getCallId().c_str(), inv, status);
+sip/sipvoiplink.cpp:        JAMI_WARN("[call:%s] SDP offer failed, reason %d", call->getCallId().c_str(), reason);
+sip/sipvoiplink.cpp:        call->hangup(reason);
+sip/sipvoiplink.cpp:    auto& sdp = call->getSDP();
+sip/sipvoiplink.cpp:    call->onMediaUpdate();
+sip/sipvoiplink.cpp:                call->onTextMessage(std::move(m));
+sip/sipaccount.cpp:    call->setSecure(isTlsEnabled());
+sip/sipaccount.cpp:        call->setTransport(t);
+sip/sipaccount.cpp:        call->setTransport(transport_);
+sip/sipaccount.cpp:    call->initIceMediaTransport(true);
+sip/sipaccount.cpp:    call->setIPToIP(isIP2IP());
+sip/sipaccount.cpp:    call->setPeerNumber(toUri);
+sip/sipaccount.cpp:    call->setPeerUri(toUri);
+sip/sipaccount.cpp:    auto& sdp = call->getSDP();
+sip/sipaccount.cpp:                                             videoEnabled_ and not call->isAudioOnly() ? MEDIA_VIDEO
+sip/sipaccount.cpp:                    call->onFailure();
+sip/sipaccount.cpp:    call->setupLocalSDPFromIce();
+sip/sipaccount.cpp:    std::string toUri(call->getPeerNumber()); // expecting a fully well formed sip uri
+sip/sipaccount.cpp:    auto transport = call->getTransport();
+sip/sipaccount.cpp:    auto local_sdp = call->getSDP().getLocalSdpSession();
+sip/sipaccount.cpp:    call->inv.reset(inv);
+sip/sipaccount.cpp:                                sip_utils::createRouteSet(getServiceRoute(), call->inv->pool));
+sip/sipaccount.cpp:    if (pjsip_inv_invite(call->inv.get(), &tdata) != PJ_SUCCESS) {
+sip/sipaccount.cpp:    if (pjsip_inv_send_msg(call->inv.get(), tdata) != PJ_SUCCESS) {
+sip/sipaccount.cpp:    call->setState(Call::CallState::ACTIVE, Call::ConnectionState::PROGRESSING);
+sip/sipcall.cpp:            if (call->inv)
+sip/sipcall.cpp:                call->terminateSipSession(PJSIP_SC_GONE);
+sip/sipcall.cpp:            Manager::instance().hangupCall(call->getCallId());
+sip/sipcall.cpp:            auto ice = call->getIceMediaTransport();
+sip/sipcall.cpp:                JAMI_ERR("[call:%s] Media ICE init failed", call->getCallId().c_str());
+sip/sipcall.cpp:                call->onFailure(EIO);
+sip/sipcall.cpp:            auto rem_ice_attrs = call->sdp_->getIceAttributes();
+sip/sipcall.cpp:                JAMI_ERR("[call:%s] Media ICE attributes empty", call->getCallId().c_str());
+sip/sipcall.cpp:                call->onFailure(EIO);
+sip/sipcall.cpp:            if (not ice->start(rem_ice_attrs, call->getAllRemoteCandidates())) {
+sip/sipcall.cpp:                JAMI_ERR("[call:%s] Media ICE start failed", call->getCallId().c_str());
+sip/sipcall.cpp:                call->onFailure(EIO);
+sip/sipcall.cpp:                    std::lock_guard<std::recursive_mutex> lk {call->callMutex_};
+sip/sipcall.cpp:                    auto ice = call->getIceMediaTransport();
+sip/sipcall.cpp:                                 call->getCallId().c_str());
+sip/sipcall.cpp:                        call->onFailure(EIO);
+sip/sipcall.cpp:                    call->stopAllMedia();
+sip/sipcall.cpp:                    if (call->tmpMediaTransport_) {
+sip/sipcall.cpp:                        if (call->mediaTransport_)
+sip/sipcall.cpp:                                [ice = std::make_shared<decltype(call->mediaTransport_)>(
+sip/sipcall.cpp:                                     std::move(call->mediaTransport_))] {});
+sip/sipcall.cpp:                        call->mediaTransport_ = std::move(call->tmpMediaTransport_);
+sip/sipcall.cpp:                    call->startAllMedia();
+call.cpp:                    call->checkAudio();
+call.cpp:            subcall->removeCall();
+call.cpp:                        call->sendTextMessage(msg.first, msg.second);
+call_factory.h:            callMaps_[call->getLinkType()].insert(std::make_pair(id, call));
+manager.cpp:            if (call->getAccount().isRendezVous())
+manager.cpp:            call->setConfId("");
+manager.cpp:                base_.onHoldCall(call->getCallId());
+manager.cpp:    switchCall(call->getCallId());
+manager.cpp:            call->sendTextMessage(messages, from);
+manager.cpp:            hangupCall(call->getCallId());
+manager.cpp:        if (!call->isSubcall() && call->getStateStr() == DRing::Call::StateEvent::CURRENT)
+manager.cpp:    auto call_id = call->getCallId();
+manager.cpp:    call->setConfId(conf_id);
+manager.cpp:    if (call->getConnectionState() != Call::ConnectionState::RINGING) {
+manager.cpp:        call->answer();
+manager.cpp:        pimpl_->switchCall(call->getConfId());
+manager.cpp:        call->hangup(0);
+manager.cpp:            result = call->onhold([=](bool ok) {
+manager.cpp:        result = call->offhold([=](bool ok) {
+manager.cpp:                pimpl_->switchCall(call->getConfId());
+manager.cpp:        call->muteMedia(mediaType, is_muted);
+manager.cpp:        call->transfer(to);
+manager.cpp:        return call->attendedTransfer(targetID);
+manager.cpp:    call->refuse();
+manager.cpp:        return getConferenceFromID(call->getConfId());
+manager.cpp:    return call and not call->getConfId().empty();
+manager.cpp:    if (call->getConfId() == conferenceId) {
+manager.cpp:        call->sendTextMessage(messages, call->getPeerDisplayName());
+manager.cpp:        call->sendTextMessage(messages, call->getPeerDisplayName());
+manager.cpp:    if (call->getStateStr() != "RINGING")
+manager.cpp:    auto conf = getConferenceFromID(call->getConfId());
+manager.cpp:        JAMI_ERR("No conference with id %s, cannot remove participant", call->getConfId().c_str());
+manager.cpp:    call->setConfId("");
+manager.cpp:        call->setConfId("");
+manager.cpp:            auto accountId = call->getAccountId();
+manager.cpp:                    if (call->getState() != Call::CallState::ACTIVE)
+manager.cpp:                    if (call->getAccountId() == accountId) {
+manager.cpp:                            if (call->getConfId().empty()) {
+manager.cpp:                                addParticipant(callID, call->getConfId());
+manager.cpp:            call->sendTextMessage(messages, from);
+manager.cpp:            JAMI_ERR("Failed to send message to call %s: %s", call->getCallId().c_str(), e.what());
+manager.cpp:        call->switchInput(res);
+manager.cpp:        return call->getDetails();
+manager.cpp:        if (!call->isSubcall())
+manager.cpp:            results.push_back(call->getCallId());
+manager.cpp:        return call->getConferenceInfos();
+manager.cpp:        return call->getConfId();
