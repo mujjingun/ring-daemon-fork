@@ -1951,6 +1951,12 @@ Manager::incomingMessage(const std::string& callID,
                          const std::string& from,
                          const std::map<std::string, std::string>& messages)
 {
+    auto& convManager
+        = jami::Manager::instance().getJamiPluginManager().getConversationServicesManager();
+    std::shared_ptr<ConversationMessage> cm = std::make_shared<ConversationMessage>(
+        from, callID, const_cast<std::map<std::string, std::string>&>(messages));
+    convManager.onTextMessage(cm);
+    
     if (isConferenceParticipant(callID)) {
         auto conf = getConferenceFromCallID(callID);
         if (not conf) {
